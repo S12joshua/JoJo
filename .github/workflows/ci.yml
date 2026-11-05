@@ -1,0 +1,27 @@
+name: Git Practice CI
+
+on:
+  push:
+    branches:
+      - feature/github-practice
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  validate:
+    name: Validate README
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check README exists
+        run: test -f README.md
+
+      - name: Display README
+        run: cat README.md
+
+      - name: Confirm CI success
+        run: echo "CI pipeline completed successfully!"
